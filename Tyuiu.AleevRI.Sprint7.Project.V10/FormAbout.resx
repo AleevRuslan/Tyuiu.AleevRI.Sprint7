@@ -117,4 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="labelInfo_ARI.Text" xml:space="preserve">
+    <value>Разработчик: Алеев Р. И.
+группа АСОиУб-23-1
+
+Программа разработана в рамках изучения языка C#
+
+Тюменский Индустриальный Университет (с) 2023
+Высшая Школа Цифровых Технологий (с) 2023
+
+Внутренне имя: Tyuiu.AleevRI.Sprint6.Task6.V2
+
+</value>
+  </data>
 </root>

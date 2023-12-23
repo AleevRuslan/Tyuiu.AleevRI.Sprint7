@@ -10,18 +10,16 @@ using System.Windows.Forms;
 
 namespace Tyuiu.AleevRI.Sprint7.Project.V10
 {
-    public partial class FormAddOrder : Form
+    public partial class FormAbout : Form
     {
-        public FormAddOrder()
+        public FormAbout()
         {
             InitializeComponent();
         }
 
-        private void buttonBack_ARI_Click(object sender, EventArgs e)
+        private void buttonOk_ARI_Click(object sender, EventArgs e)
         {
-            FormMain m = new FormMain();
-            m.Show();
-            Hide();
+            this.Close();
         }
     }
 }

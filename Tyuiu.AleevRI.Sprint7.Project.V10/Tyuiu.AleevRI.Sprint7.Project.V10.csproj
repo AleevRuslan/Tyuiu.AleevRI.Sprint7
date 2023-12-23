@@ -46,17 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormAddOrder.cs">
+    <Compile Include="FormAbout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAddOrder.Designer.cs">
-      <DependentUpon>FormAddOrder.cs</DependentUpon>
+    <Compile Include="FormAbout.Designer.cs">
+      <DependentUpon>FormAbout.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormEditOrder.cs">
+    <Compile Include="FormHelp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormEditOrder.Designer.cs">
-      <DependentUpon>FormEditOrder.cs</DependentUpon>
+    <Compile Include="FormHelp.Designer.cs">
+      <DependentUpon>FormHelp.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -64,22 +64,25 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TitleMenu.cs">
+    <Compile Include="FormTitleScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TitleMenu.Designer.cs">
-      <DependentUpon>TitleMenu.cs</DependentUpon>
+    <Compile Include="FormTitleScreen.Designer.cs">
+      <DependentUpon>FormTitleScreen.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FormAddOrder.resx">
-      <DependentUpon>FormAddOrder.cs</DependentUpon>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAbout.resx">
+      <DependentUpon>FormAbout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormEditOrder.resx">
-      <DependentUpon>FormEditOrder.cs</DependentUpon>
+    <EmbeddedResource Include="FormHelp.resx">
+      <DependentUpon>FormHelp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTitleScreen.resx">
+      <DependentUpon>FormTitleScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -90,9 +93,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="TitleMenu.resx">
-      <DependentUpon>TitleMenu.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

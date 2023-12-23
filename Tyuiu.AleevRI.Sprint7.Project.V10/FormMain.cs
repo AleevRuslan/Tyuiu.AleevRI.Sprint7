@@ -18,18 +18,6 @@ namespace Tyuiu.AleevRI.Sprint7.Project.V10
         }
 
 
-        private void buttonAddOrder_ARI_Click(object sender, EventArgs e)
-        {
-            FormAddOrder A = new FormAddOrder();
-            A.Show();
-            Hide();
-        }
 
-        private void buttonEditOrder_ARI_Click(object sender, EventArgs e)
-        {
-            FormEditOrder E = new FormEditOrder();
-            E.Show();
-            Hide();
-        }
     }
 }
