@@ -16,7 +16,7 @@ namespace Tyuiu.AleevRI.Sprint7.Project.V10
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormTitleScreen());
+            Application.Run(new FormMain());
         }
     }
 }

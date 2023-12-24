@@ -64,12 +64,6 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormTitleScreen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormTitleScreen.Designer.cs">
-      <DependentUpon>FormTitleScreen.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormAbout.resx">
@@ -80,9 +74,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormTitleScreen.resx">
-      <DependentUpon>FormTitleScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -105,6 +96,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tyuiu.AleevRI.Sprint7.Project.V10.Lib\Tyuiu.AleevRI.Sprint7.Project.V10.Lib.csproj">
+      <Project>{dc025c03-ab9c-4598-bfca-b5c7c9ae07f5}</Project>
+      <Name>Tyuiu.AleevRI.Sprint7.Project.V10.Lib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

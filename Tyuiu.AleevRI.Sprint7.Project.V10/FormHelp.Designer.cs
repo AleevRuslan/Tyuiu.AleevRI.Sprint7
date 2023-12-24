@@ -49,6 +49,8 @@ namespace Tyuiu.AleevRI.Sprint7.Project.V10
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(528, 450);
             this.Controls.Add(this.buttonBack_ARI);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormHelp";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
