@@ -62,7 +62,9 @@ namespace Tyuiu.AleevRI.Sprint7.Project.V10
             this.Controls.Add(this.buttonOk_ARI);
             this.Controls.Add(this.labelInfo_ARI);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(415, 220);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(415, 220);
             this.Name = "FormAbout";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

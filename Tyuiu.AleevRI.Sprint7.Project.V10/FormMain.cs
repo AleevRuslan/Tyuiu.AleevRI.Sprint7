@@ -19,9 +19,8 @@ namespace Tyuiu.AleevRI.Sprint7.Project.V10
             InitializeComponent();
         }
 
-        static int rows;
-        static int cols;
-        static string openFilePath;
+        public string filePath;
+        static int columnIndex;
 
         DataService ds = new DataService();
 
@@ -29,9 +28,9 @@ namespace Tyuiu.AleevRI.Sprint7.Project.V10
         private void buttonOpenFile_ARI_Click(object sender, EventArgs e)
         {
             openFileDialog_ARI.ShowDialog();
-            openFilePath = openFileDialog_ARI.FileName;
+            filePath = openFileDialog_ARI.FileName;
 
-            string[,] arrayValues = ds.LoadFromFileData(openFilePath);
+            string[,] arrayValues = ds.LoadFromFileData(filePath);
 
             int cols = arrayValues.GetLength(1);
             int rows = arrayValues.GetLength(0);
@@ -45,6 +44,14 @@ namespace Tyuiu.AleevRI.Sprint7.Project.V10
                     dataGridViewOrders_ARI.Rows[i].Cells[j].Value = arrayValues[i, j];
                 }
             }
+
+            buttonPriceAverage_ARI.Enabled = true;
+            buttonPriceMax_ARI.Enabled = true;
+            buttonPriceMin_ARI.Enabled = true;
+            buttonPriceTotal_ARI.Enabled = true;
+            buttonGraphic_ARI.Enabled = true;
+            buttonAddRows_ARI_ARI.Enabled = true;
+            buttonDelRows_ARI.Enabled = true;
         }
 
 
@@ -104,55 +111,53 @@ namespace Tyuiu.AleevRI.Sprint7.Project.V10
         {
             if (dataGridViewOrders_ARI.RowCount != 0)
             {
-                int nugno = -1;
-                for (int i = 0; i < dataGridViewOrders_ARI.RowCount - 1; i++)
+                int selectedColumnIndex = -1;
+                for (int i = 0; i < dataGridViewOrders_ARI.RowCount; i++)
                 {
-                    for (int j = 0; j < dataGridViewOrders_ARI.ColumnCount - 1; j++)
+                    for (int j = 0; j < dataGridViewOrders_ARI.ColumnCount; j++)
                     {
                         if (dataGridViewOrders_ARI.Rows[i].Cells[j].Selected == true)
                         {
-                            nugno = j;
+                            selectedColumnIndex = j;
                             break;
                         }
                     }
-                    if (nugno > -1) break;
+                    if (selectedColumnIndex > -1) break;
                 }
-                if (nugno > -1)
+                if (selectedColumnIndex > -1)
                 {
-                    if (dataGridViewOrders_ARI.Rows[0].Cells[nugno].Selected == true) MessageBox.Show("Первую строку нельзя удалить", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    else
+                    var result = MessageBox.Show($"Удалить выбранную строку? Это действие нельзя будет отменить.", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
                     {
-                        var result = MessageBox.Show($"{"Удалить данную строку?" + "\r"}{"Ее невозможно будет восстановить"}", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (result == DialogResult.Yes)
+                        int deletedRowCount = 0;
+                        for (int i = 0; i < dataGridViewOrders_ARI.RowCount; i++)
                         {
-                            int k = -1; int udal = 0;
-                            for (int i = 1; i < dataGridViewOrders_ARI.RowCount - 1; i++)
+                            if (dataGridViewOrders_ARI.Rows[i].Cells[selectedColumnIndex].Selected == true)
                             {
-                                if (dataGridViewOrders_ARI.Rows[i].Cells[nugno].Selected == true)
-                                {
-                                    k = i;
-                                    break;
-                                }
-                                if (k > -1) break;
-                            }
-                            for (int i = 1; i < dataGridViewOrders_ARI.RowCount - 1; i++)
-                            {
-                                if (dataGridViewOrders_ARI.Rows[i].Cells[nugno].Selected == true) udal++;
-                            }
-                            for (int r = 0; r < udal; r++) dataGridViewOrders_ARI.Rows.Remove(dataGridViewOrders_ARI.Rows[k]);
-                            for (int i = 0; i < dataGridViewOrders_ARI.RowCount - 1; i++)
-                            {
-                                for (int j = 0; j < dataGridViewOrders_ARI.ColumnCount - 1; j++)
-                                {
-                                    dataGridViewOrders_ARI.Rows[i].Cells[j].Selected = false;
-                                }
+                                dataGridViewOrders_ARI.Rows.RemoveAt(i);
+                                i--;
+                                deletedRowCount++;
                             }
                         }
+                        for (int i = 0; i < dataGridViewOrders_ARI.RowCount; i++)
+                        {
+                            for (int j = 0; j < dataGridViewOrders_ARI.ColumnCount; j++)
+                            {
+                                dataGridViewOrders_ARI.Rows[i].Cells[j].Selected = false;
+                            }
+                        }
+                        MessageBox.Show($"Удалено {deletedRowCount} строк.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-                else MessageBox.Show("Выберите строку, которую ходите удалить", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                {
+                    MessageBox.Show("Выберите строку, которую хотите удалить", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ToolStripMenuItemHelp_ARI_Click(object sender, EventArgs e)
@@ -165,6 +170,33 @@ namespace Tyuiu.AleevRI.Sprint7.Project.V10
         {
             FormAbout FormAbout = new FormAbout();
             FormAbout.Show();
+        }
+
+
+        private void buttonGraphic_ARI_Click(object sender, EventArgs e)
+        {
+            FormGraph formGraph = new FormGraph();
+            formGraph.Show();
+        }
+
+        private void buttonPriceMin_ARI_Click(object sender, EventArgs e)
+        {
+            textBoxPriceMin_ARI.Text = Convert.ToString(ds.FindMinValueInColumn(filePath, 5));
+        }
+
+        private void buttonPriceMax_ARI_Click(object sender, EventArgs e)
+        {
+            textBoxPriceMax_ARI.Text = Convert.ToString(ds.FindMaxValueInColumn(filePath, 5));
+        }
+
+        private void buttonPriceTotal_ARI_Click(object sender, EventArgs e)
+        {
+            textBoxPriceTotal_ARI.Text = Convert.ToString(ds.FindSumOfColumn(filePath, 5));
+        }
+
+        private void buttonPriceAverage_ARI_Click(object sender, EventArgs e)
+        {
+            textBoxPriceAverage_ARI.Text = Convert.ToString(ds.FindAverageValueInColumn(filePath, 5));
         }
     }
 }
